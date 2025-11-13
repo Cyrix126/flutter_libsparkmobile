@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(Boost-CMake)
 
+cmake_policy(SET CMP0135 NEW)
+
 add_compile_definitions(_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION)
 
 option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" ON)
@@ -18,7 +20,7 @@ FetchContent_GetProperties(Boost)
 
 if(NOT Boost_POPULATED)
   message(STATUS "Fetching Boost")
-  FetchContent_Populate(Boost)
+  FetchContent_MakeAvailable(Boost)
   message(STATUS "Fetching Boost - done")
   set(BOOST_SOURCE ${boost_SOURCE_DIR})
 
